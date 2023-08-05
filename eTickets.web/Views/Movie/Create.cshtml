@@ -1,0 +1,158 @@
+﻿@model CreateMovieDto
+@{
+	ViewBag.Moviectiv = "Moviectiv";
+}
+<br />
+<div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
+	<!--begin:Form-->
+	<form class="form" asp-action="Create" enctype="multipart/form-data">
+		<!--begin::Heading-->
+		<div class="mb-13 text-center">
+			<!--begin::Title-->
+			<h1 class="mb-3">Add New Movie</h1>
+			<!--end::Title-->
+			<!--begin::Description-->
+			<div class="text-muted fw-semibold fs-5">
+				Please enter valid data
+			</div>
+			<!--end::Description-->
+		</div>
+		<!--end::Heading-->
+		<!--begin::Input group-->
+
+		<div class="row">
+			<div class="col-md-4">
+				<div class="d-flex flex-column mb-8 fv-row">
+					<!--begin::Label-->
+					<label class="d-flex align-items-center fs-6 fw-semibold mb-2" asp-for="Name">
+					</label>
+					<!--end::Label-->
+					<input asp-for="Name" class="form-control form-control-solid" placeholder="Enter Full Name" />
+					<span asp-validation-for="Name" class="text-danger"></span>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="d-flex flex-column mb-8 fv-row">
+					<!--begin::Label-->
+					<label class="d-flex align-items-center fs-6 fw-semibold mb-2" asp-for="Description">
+					</label>
+					<!--end::Label-->
+					<input asp-for="Description" class="form-control form-control-solid" placeholder="Enter Description" />
+					<span asp-validation-for="Description" class="text-danger"></span>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="d-flex flex-column mb-8 fv-row">
+					<!--begin::Label-->
+					<label class="d-flex align-items-center fs-6 fw-semibold mb-2" asp-for="CreatedAt">
+					</label>
+					<!--end::Label-->
+					<input asp-for="CreatedAt" class="form-control form-control-solid" placeholder="Enter Created At" />
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-4">
+				<div class="d-flex flex-column mb-8 fv-row">
+					<!--begin::Label-->
+					<label class="d-flex align-items-center fs-6 fw-semibold mb-2" asp-for="Price">
+					</label>
+					<!--end::Label-->
+					<input asp-for="Price" class="form-control form-control-solid" placeholder="Enter Price" />
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="d-flex flex-column mb-8 fv-row">
+					<!--begin::Label-->
+					<label class="d-flex align-items-center fs-6 fw-semibold mb-2" asp-for="ImageURL">
+					</label>
+					<!--end::Label-->
+					<input asp-for="ImageURL" class="form-control form-control-solid" placeholder="Enter Image" />
+					<span asp-validation-for="ImageURL" class="text-danger"></span>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="d-flex flex-column mb-8 fv-row">
+					<!--begin::Label-->
+					<label class="d-flex align-items-center fs-6 fw-semibold mb-2" asp-for="StartDate">
+					</label>
+					<!--end::Label-->
+					<input asp-for="StartDate" class="form-control form-control-solid" placeholder="Enter Start Time" />
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-4">
+				<div class="d-flex flex-column mb-8 fv-row">
+					<!--begin::Label-->
+					<label class="d-flex align-items-center fs-6 fw-semibold mb-2" asp-for="EndDate">
+					</label>
+					<!--end::Label-->
+					<input asp-for="EndDate" class="form-control form-control-solid" placeholder="Enter End Time" />
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="d-flex flex-column mb-8 fv-row">
+					<!--begin::Label-->
+					<label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+						<span class="required">Actors</span>
+					</label>
+					<!--end::Label-->
+					<select asp-for="Actors" multiple asp-items="ViewBag.Actors" class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Select a Actors">
+					</select>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="d-flex flex-column mb-8 fv-row">
+					<!--begin::Label-->
+					<label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+						<span class="required">Director</span>
+					</label>
+					<!--end::Label-->
+					<select asp-for="DirectorId" asp-items="ViewBag.Directors" class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Select a Director">
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			
+			<div class="col-md-4">
+				<div class="d-flex flex-column mb-8 fv-row">
+					<!--begin::Label-->
+					<label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+						<span class="required">cinema</span>
+					</label>
+					<!--end::Label-->
+					<select asp-for="CinemaId" asp-items="ViewBag.Cinemas" class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Select a Cinema">
+					</select>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="d-flex flex-column mb-8 fv-row">
+					<!--begin::Label-->
+					<label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+						<span class="required">Categry</span>
+					</label>
+					<!--end::Label-->
+					<select asp-for="CategoryId" asp-items="ViewBag.Catgerys" class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Select a Categry">
+					</select>
+				</div>
+			</div>
+			
+		</div>
+		<!--begin::Actions-->
+		<div class="text-center">
+			<a type="reset" href="~/Movie/Index" id="kt_modal_new_target_cancel" class="btn btn-light me-3">Cancel</a>
+			<input type="submit" id="kt_modal_new_target_submit" class="btn btn-primary">
+			<span class="indicator-progress">
+				Please wait...
+				<span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+			</span>
+			</input>
+		</div>
+		<!--end::Actions-->
+	</form>
+	<!--end:Form-->
+</div>

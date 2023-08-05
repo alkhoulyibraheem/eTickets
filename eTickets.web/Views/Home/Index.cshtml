@@ -1,0 +1,81 @@
+﻿@model List<movieViewModel>
+@{
+	ViewBag.Homeactiv = "Homeactiv";
+	var UserType = ViewData["UserType"] as string;
+}
+
+<br />
+
+<div class="row g-6 mb-6 g-xl-9 mb-xl-9">
+	<!--begin::Followers-->
+	<!--begin::Col-->
+	@foreach(var movie in Model)
+	{
+		<div class="col-md-6 col-xxl-4">
+			<!--begin::Card-->
+			<div class="card">
+				<!--begin::Card body-->
+				<div class="card-body d-flex flex-center flex-column py-9 px-5">
+					<!--begin::Avatar-->
+					<div class="symbol symbol-65px symbol-circle mb-5">
+						<img src="~/Image/@movie.ImageURL" alt="image" />
+						<div class="bg-success position-absolute rounded-circle translate-middle start-100 top-100 border border-4 border-body h-15px w-15px ms-n3 mt-n3"></div>
+					</div>
+					<!--end::Avatar-->
+					<!--begin::Name-->
+					<a href="~/Home/profile/@movie.Id" class="fs-4 text-gray-800 text-hover-primary fw-bold mb-0">@movie.Name</a>
+					<!--end::Name-->
+					<!--begin::Position-->
+					<div class="fw-semibold text-gray-400 mb-6 text-center">@movie.Description</div>
+					<!--end::Position-->
+					<!--begin::Info-->
+					<div class="d-flex flex-center mb-8">
+						<!--begin::Stats-->
+						<div class="border border-dashed rounded min-w-90px py-3 px-4 mx-2 mb-3">
+							<div class="fs-6 fw-bold text-gray-700">@movie.StartDate</div>
+							<div class="fw-semibold text-gray-400">Start Date</div>
+						</div>
+						<!--end::Stats-->
+						<!--begin::Stats-->
+						<div class="border border-dashed rounded min-w-90px py-3 px-4 mx-2 mb-3">
+							<div class="fs-6 fw-bold text-gray-700">@movie.EndDate</div>
+							<div class="fw-semibold text-gray-400">End Date</div>
+						</div>
+						<div class="border border-dashed rounded min-w-90px py-3 px-4 mx-2 mb-3">
+							<div class="fs-6 fw-bold text-gray-700">$@movie.Price</div>
+							<div class="fw-semibold text-gray-400">Price</div>
+						</div>
+						<!--end::Stats-->
+					</div>
+					<!--end::Info-->
+					<!--begin::Follow-->
+					@if (UserType != "Admin")
+					{
+						<div style="display :flex ; gap : 1.5rem "  >
+							<a class="btn btn-primary" href="~/Home/buying/@movie.Id">buying</a>
+							<a class="btn btn-primary" href="~/Home/Rating/@movie.Id" style="display :flex ; gap : 0.3rem; align-items : center">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-stars" viewBox="0 0 16 16">
+									<path d="M7.657 6.247c.11-.33.576-.33.686 0l.645 1.937a2.89 2.89 0 0 0 1.829 1.828l1.936.645c.33.11.33.576 0 .686l-1.937.645a2.89 2.89 0 0 0-1.828 1.829l-.645 1.936a.361.361 0 0 1-.686 0l-.645-1.937a2.89 2.89 0 0 0-1.828-1.828l-1.937-.645a.361.361 0 0 1 0-.686l1.937-.645a2.89 2.89 0 0 0 1.828-1.828l.645-1.937zM3.794 1.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387A1.734 1.734 0 0 0 4.593 5.69l-.387 1.162a.217.217 0 0 1-.412 0L3.407 5.69A1.734 1.734 0 0 0 2.31 4.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387A1.734 1.734 0 0 0 3.407 2.31l.387-1.162zM10.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732L9.1 2.137a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L10.863.1z" />
+								</svg> Rating
+							</a>
+						</div>
+					}
+					
+					<!--end::Follow-->
+				</div>
+				<!--begin::Card body-->
+			</div>
+			<!--begin::Card-->
+		</div>
+	}
+	
+	<!--end::Col-->
+
+</div>
+
+
+
+
+
+
+

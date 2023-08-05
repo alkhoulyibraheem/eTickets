@@ -1,0 +1,111 @@
+﻿@model CreateUserDto
+
+@{
+	ViewBag.Useractiv = "Useractiv";
+}
+<br />
+<br />
+<div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
+	<!--begin:Form-->
+	<form class="form" asp-action="Create" enctype="multipart/form-data">
+		<!--begin::Heading-->
+		<div class="mb-13 text-center">
+			<!--begin::Title-->
+			<h1 class="mb-3">Add New User</h1>
+			<!--end::Title-->
+			<!--begin::Description-->
+			<div class="text-muted fw-semibold fs-5">
+				Please enter valid data
+			</div>
+			<!--end::Description-->
+		</div>
+		<!--end::Heading-->
+		<!--begin::Input group-->
+		<div class="row">
+			<div class="col-md-6">
+				<div class="d-flex flex-column mb-8 fv-row">
+					<!--begin::Label-->
+					<label class="d-flex align-items-center fs-6 fw-semibold mb-2" asp-for="FullName">
+					</label>
+					<!--end::Label-->
+					<input asp-for="FullName" class="form-control form-control-solid" placeholder="Enter Full Name" required />
+					<span asp-validation-for="FullName" class="text-danger"></span>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="d-flex flex-column mb-8 fv-row">
+					<!--begin::Label-->
+					<label class="d-flex align-items-center fs-6 fw-semibold mb-2" asp-for="PhoneNumber">
+					</label>
+					<!--end::Label-->
+					<input asp-for="PhoneNumber"  class="form-control form-control-solid" placeholder="Enter Phone Number" />
+					
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-6">
+				<div class="d-flex flex-column mb-8 fv-row">
+					<!--begin::Label-->
+					<label class="d-flex align-items-center fs-6 fw-semibold mb-2"  asp-for="Email">
+					</label>
+					<!--end::Label-->
+					<input asp-for="Email" class="form-control form-control-solid"  placeholder="Enter Your Email" />
+					<span asp-validation-for="Email" class="text-danger"></span>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="d-flex flex-column mb-8 fv-row">
+					<!--begin::Label-->
+					<label class="d-flex align-items-center fs-6 fw-semibold mb-2"  asp-for="ImageURL">
+					</label>
+					<!--end::Label-->
+					<input asp-for="ImageURL" class="form-control form-control-solid"  placeholder="Enter Image" />
+					<span asp-validation-for="ImageURL" class="text-danger"></span>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-6">
+				<div class="d-flex flex-column mb-8 fv-row">
+					<!--begin::Label-->
+					<label class="d-flex align-items-center fs-6 fw-semibold mb-2" asp-for="UserType">
+					</label>
+					<!--end::Label-->
+					<select asp-for="UserType"  class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Select a User Type">
+						<option value="@UserType.Admin">Admin</option>
+						<option value="@UserType.Actor">Actor</option>
+						<option value="@UserType.director">director</option>
+						<option value="@UserType.Customer">Customer</option>
+					</select>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="d-flex flex-column mb-8 fv-row">
+					<!--begin::Label-->
+					<label class="d-flex align-items-center fs-6 fw-semibold mb-2" asp-for="FullName">
+					</label>
+					<!--end::Label-->
+					<select asp-for="Status"  class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Select a Statu">
+						<option value="@status.Active">Active</option>
+						<option value="@status.Unactive">Unactive</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<!--begin::Actions-->
+		<div class="text-center">
+			<a type="reset" href="~/User/Index" id="kt_modal_new_target_cancel" class="btn btn-light me-3">Cancel</a>
+			<input type="submit" id="kt_modal_new_target_submit" class="btn btn-primary">
+				<span class="indicator-progress">
+					Please wait...
+					<span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+				</span>
+			</input>
+		</div>
+		<!--end::Actions-->
+	</form>
+	<!--end:Form-->
+</div>

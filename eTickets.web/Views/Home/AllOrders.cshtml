@@ -1,0 +1,115 @@
+﻿@{
+    ViewBag.AllOrder = "AllOrder";
+}
+<br />
+
+<div class="card mb-5 mb-xl-8">
+    <div class="card-header border-0 pt-5">
+        <h3 class="card-title align-items-center flex-column">
+            <span class="card-label fw-bold fs-3 mb-1">All Orders</span>
+        </h3>
+       
+    </div>
+    <div class="card-body py-3">
+        <!--begin::Table container-->
+        <div class="table-responsive">
+            <table id="kt_datatable_dom_positioning" class="table table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
+                <thead>
+                    <tr class="fw-bold text-muted">
+                        <th class="w-300px text-start">User</th>
+                        <th class="w-200px text-start">Movie</th>
+                        <th class="w-80px text-center">Price </th>
+                        <th class="w-80px text-center">Amount</th>
+                        <th class="w-80px text-end">Total Price</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts
+    {
+    <script src="~/datatable/datatable.js"></script>
+    <script>
+        DataTable(
+            "/Home/GetDataTableData/",
+            [
+
+               {
+                    data: null,
+                    name: null,
+                    className: "dt-right align-middle",
+                    render: function (data) {
+                        return "<td>"+
+                            "<div class='d-flex align-items-center' style='width:fit-content'>" +
+									"<div class='symbol symbol-45px me-5'>"+
+										"<img alt='Pic' src='/Image/"+data.order.user.imageURL+"' />"+
+									"</div>"+
+                            "<div class='d-flex justify-content-start flex-column' style='width:fit-content'>" +
+                            "<p href='#' class='text-dark fw-bold  mb-1 fs-6 text-start'>" + data.order.user.fullName + "</p>" +
+										"<a href='#' class='text-muted text-hover-primary fw-semibold text-muted d-block fs-7'>"+
+                            "<span class='text-dark'>Email</span>: " + data.order.user.userName + "</a>" +
+									"</div>"+
+						"</div>"+
+                     "</td>";
+                    }
+                }, {
+                    data: null,
+                    name: null,
+                    className: "dt-right align-middle",
+                    render: function (data) {
+                        return "<td>" +
+                            "<div class='d-flex align-items-center' style='width:fit-content'>" +
+                            "<div class='symbol symbol-45px me-5'>" +
+                            "<img alt='Pic' src='/Image/" + data.movie.imageURL + "' />" +
+                            "</div>" +
+                            "<div class='d-flex justify-content-start flex-column' style='width:fit-content'>" +
+                            "<p href='#' class='text-dark fw-bold  mb-1 fs-6 text-start'>" + data.movie.name + "</p>" +
+                            "<a href='#' class='text-muted text-hover-primary fw-semibold text-muted d-block fs-7'>" +
+                            "<span class='text-dark'>Create At</span>: " + data.movie.createdAt + "</a>" +
+                            "</div>" +
+                            "</div>" +
+                            "</td>";
+                    }
+                }, {
+                    data: null,
+                    name: null,
+                    className: "dt-right align-middle",
+                    render: function (data) {
+                        return "<p href='#' class=' text-center text-dark fw-bold d-block mb-1 fs-6'>" + data.movie.price + "</p>";
+
+                    }
+                }, {
+                    data: null,
+                    name: null,
+                    className: "dt-right align-middle",
+                    render: function (data) {
+                        return "<p href='#' class=' text-center text-dark fw-bold d-block mb-1 fs-6'>" + data.amount + "</p>";
+
+                    }
+                }, {
+                    data: null,
+                    name: null,
+                    className: "dt-right align-middle",
+                    render: function (data) {
+                        return "<p href='#' class=' text-end text-dark fw-bold d-block mb-1 fs-6'>" + data.price + "</p>";
+
+                    }
+                }
+
+                //{
+                //    data: null, name: null, orderable: false, className: "text-center align-middle", render: function (data) {
+                //        return "<img src='/Image/" + data.imageURL + "' class='btn' height='100' width='100'>";
+                //    }
+                //},
+                
+            ]
+        );
+    </script>
+
+}
+
+

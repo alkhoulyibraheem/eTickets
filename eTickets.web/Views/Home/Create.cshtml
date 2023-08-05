@@ -1,0 +1,168 @@
+﻿@model CreateCustomerDto
+@{
+	ViewBag.Customeractiv = "Customeractiv";
+	Layout = null;
+}
+
+
+
+<!DOCTYPE html>
+<!--
+Author: Keenthemes
+Product Name: Metronic
+Product Version: 8.1.7
+Purchase: https://1.envato.market/EA4JP
+Website: http://www.keenthemes.com
+Contact: support@keenthemes.com
+Follow: www.twitter.com/keenthemes
+Dribbble: www.dribbble.com/keenthemes
+Like: www.facebook.com/keenthemes
+License: For each use you must have a valid license purchased only from above link in order to legally use the theme for your project.
+-->
+<html lang="en">
+<!--begin::Head-->
+<head>
+	<base href="../../../" />
+	<title>Metronic - The World's #1 Selling Bootstrap Admin Template by Keenthemes</title>
+	<meta charset="utf-8" />
+	<meta name="description" content="The most advanced Bootstrap 5 Admin Theme with 40 unique prebuilt layouts on Themeforest trusted by 100,000 beginners and professionals. Multi-demo, Dark Mode, RTL support and complete React, Angular, Vue, Asp.Net Core, Rails, Spring, Blazor, Django, Express.js, Node.js, Flask, Symfony & Laravel versions. Grab your copy now and get life-time updates for free." />
+	<meta name="keywords" content="metronic, bootstrap, bootstrap 5, angular, VueJs, React, Asp.Net Core, Rails, Spring, Blazor, Django, Express.js, Node.js, Flask, Symfony & Laravel starter kits, admin themes, web design, figma, web development, free templates, free admin themes, bootstrap theme, bootstrap template, bootstrap dashboard, bootstrap dak mode, bootstrap button, bootstrap datepicker, bootstrap timepicker, fullcalendar, datatables, flaticon" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="Metronic - Bootstrap Admin Template, HTML, VueJS, React, Angular. Laravel, Asp.Net Core, Ruby on Rails, Spring Boot, Blazor, Django, Express.js, Node.js, Flask Admin Dashboard Theme & Template" />
+	<meta property="og:url" content="https://keenthemes.com/metronic" />
+	<meta property="og:site_name" content="Keenthemes | Metronic" />
+	<link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
+	<link rel="shortcut icon" href="~/assets/media/logos/favicon.ico" />
+	<!--begin::Fonts(mandatory for all pages)-->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
+	<!--end::Fonts-->
+	<!--begin::Global Stylesheets Bundle(mandatory for all pages)-->
+	<link href="~/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+	<link href="~/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+	<!--end::Global Stylesheets Bundle-->
+</head>
+<!--end::Head-->
+<!--begin::Body-->
+<body id="kt_body" class="app-blank bgi-size-cover bgi-position-center">
+	<br />
+	<br />
+	<div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
+		<!--begin:Form-->
+		<div class="col-md-8 container-fluid">
+			<form class="form" asp-action="Create" enctype="multipart/form-data">
+				<input value="hi" type="hidden" asp-for="Name" />
+				<!--begin::Heading-->
+				<div class="mb-13 text-center">
+					<!--begin::Title-->
+					<h1 class="mb-3">Sign UP</h1>
+					<!--end::Title-->
+					<!--begin::Description-->
+					<div class="text-muted fw-semibold fs-5">
+						Please enter valid data
+					</div>
+					<!--end::Description-->
+				</div>
+				<!--end::Heading-->
+				<!--begin::Input group-->
+
+				<div class="row">
+					<div class="col-md-4">
+						<div class="d-flex flex-column mb-8 fv-row">
+							<!--begin::Label-->
+							<label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+								<span class="required">Name</span>
+							</label>
+							<!--end::Label-->
+							<input asp-for="User.FullName" class="form-control form-control-solid" placeholder="Enter Full Name" />
+						</div>
+					</div>
+
+					<div class="col-md-4">
+						<div class="d-flex flex-column mb-8 fv-row">
+							<!--begin::Label-->
+							<label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+								<span class="required">BirthDay</span>
+							</label>
+							<!--end::Label-->
+							<input asp-for="DOB" class="form-control form-control-solid" placeholder="Enter Birth Day" />
+						</div>
+					</div>
+
+					<div class="col-md-4">
+						<div class="d-flex flex-column mb-8 fv-row">
+							<!--begin::Label-->
+							<label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+								<span class="required">Image </span>
+							</label>
+							<!--end::Label-->
+							<input asp-for="ImageURl" class="form-control form-control-solid" placeholder="Enter Image" />
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+
+
+					<div class="col-md-6">
+						<div class="d-flex flex-column mb-8 fv-row">
+							<!--begin::Label-->
+							<label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+								<span class="required">Gender</span>
+							</label>
+							<!--end::Label-->
+							<select asp-for="Gender" class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Select a Gender">
+								<option value="@Gender.male">male</option>
+								<option value="@Gender.female">female</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="col-md-6">
+						<div class="d-flex flex-column mb-8 fv-row">
+							<!--begin::Label-->
+							<label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+								<span class="required">phone Number</span>
+							</label>
+							<!--end::Label-->
+							<input asp-for="User.PhoneNumber" class="form-control form-control-solid" placeholder="Enter Your Phone Number" />
+						</div>
+					</div>
+
+
+				</div>
+
+				<div class="row">
+
+					<div class="col-md-12">
+						<div class="d-flex flex-column mb-8 fv-row">
+							<!--begin::Label-->
+							<label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+								<span class="required">Email</span>
+							</label>
+							<!--end::Label-->
+							<input asp-for="User.Email" class="form-control form-control-solid" placeholder="Enter Email" />
+						</div>
+					</div>
+				</div>
+				<!--begin::Actions-->
+				<div class="text-center">
+					<a type="reset" href="~/Identity/Account/Login" id="kt_modal_new_target_cancel" class="btn btn-light me-3">Cancel</a>
+					<input type="submit" id="kt_modal_new_target_submit" style="color : #FFF" class="btn btn-primary text-hover-dark ">
+					<span class="indicator-progress">
+						Please wait...
+						<span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+					</span>
+					</input>
+				</div>
+				<!--end::Actions-->
+			</form>
+		</div>
+		
+		<!--end:Form-->
+	</div>
+</body>
+<!--end::Body-->
+</html>
+
