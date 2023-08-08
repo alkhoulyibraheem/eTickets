@@ -20,7 +20,9 @@ namespace eTickets.data.Models
 
         public UserType UserType{ get; set; }
 
-        public status Status { get; set; }
+		public string FCMToken { get; set; }
+
+		public status Status { get; set; }
 
 		public Actors Actor { get; set; }
 

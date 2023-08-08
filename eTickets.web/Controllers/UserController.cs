@@ -38,6 +38,7 @@ namespace eTickets.web.Controllers
 		//	return Json(result);
 		//}
 
+
 		
 		[HttpGet]
 		public IActionResult Create()
