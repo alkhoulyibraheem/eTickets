@@ -16,10 +16,11 @@ namespace eTickets.web.Controllers
         }
 
         // Implement the necessary methods and actions based on the requirements specified in the issue description
+        // Replace the placeholder comments with the actual code that implements the necessary methods and actions based on the requirements specified in the issue description
         // ...
 
         // Add the necessary methods and actions based on the requirements specified in the issue description
-        // ...
+        // Replace the placeholder comments with the actual code that implements the necessary methods and actions based on the requirements specified in the issue description
 
     }
 }
