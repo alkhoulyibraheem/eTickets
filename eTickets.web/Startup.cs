@@ -1,6 +1,7 @@
 using eTickets.data;
 using eTickets.data.Models;
 using eTickets.infrastructure.AutoMapper;
+using eTickets.infrastructure.Middlewares;
 using eTickets.infrastructure.Services;
 using eTickets.infrastructure.Services.Actor;
 using eTickets.infrastructure.Services.Category;
@@ -93,13 +94,13 @@ namespace eTickets.web
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
-            app.UseRouting();
+			
+			app.UseRouting();
 
             app.UseAuthentication();
             app.UseAuthorization();
 
-			
+			app.UseExceptionHandler(opts => opts.UseMiddleware<ExceptionHandler>());
 
 			app.UseEndpoints(endpoints =>
             {

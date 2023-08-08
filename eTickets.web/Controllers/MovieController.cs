@@ -70,10 +70,6 @@ namespace eTickets.web.Controllers
             {
                 TempData["msg"] = "e:enter right date !";
             }
-            ViewData["Actors"] = new SelectList(_db.Actors.Where(x => !x.IsDelete).ToList(), "Id", "Name");
-            ViewData["Cinemas"] = new SelectList(_db.Cinemas.Where(x => !x.IsDelete).ToList(), "Id", "Name");
-            ViewData["Directors"] = new SelectList(_db.Directors.Where(x => !x.IsDelete).ToList(), "Id", "Name");
-            ViewData["Catgerys"] = new SelectList(_db.Catgerys.Where(x => !x.IsDelete).ToList(), "Id", "Name");
             return View(dto);
 		}
 
