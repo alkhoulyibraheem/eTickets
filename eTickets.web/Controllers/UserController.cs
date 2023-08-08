@@ -89,6 +89,12 @@ namespace eTickets.web.Controllers
 
 			return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public IActionResult NewView()
+        {
+            return View();
+        }
 		
 
 	}
