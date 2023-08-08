@@ -31,7 +31,7 @@ namespace eTickets.infrastructure.Services.Users
             _fileService = fileService;
             _emailService = emailService;
         }
-
+		
 
 		public UserViewModel GetUserByUsername(string username)
         {
