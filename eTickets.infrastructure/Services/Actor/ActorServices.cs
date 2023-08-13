@@ -107,7 +107,17 @@ namespace eTickets.infrastructure.Services.Actor
 
             if (dto.ImageURl != null)
             {
-				actor.ImageURl = await _fileService.SaveFile(dto.ImageURl, "Image");
+				var ImageName = await _fileService.SaveImage(dto.ImageURl, "Image");
+				if (ImageName == "1")
+				{
+					return -1;
+
+				}
+				else
+				{
+					actor.ImageURl = ImageName;
+				}
+				
             }
 			actor.User = null;
             await _db.Actors.AddAsync(actor);
@@ -128,7 +138,17 @@ namespace eTickets.infrastructure.Services.Actor
             var updatedactor = _mapper.Map<UpdateActorDto, Actors>(dto, actor);
             if (dto.ImageURl != null)
             {
-				updatedactor.ImageURl = await _fileService.SaveFile(dto.ImageURl, "Image");
+                var ImageName = await _fileService.SaveImage(dto.ImageURl, "Image");
+				if (ImageName == "1")
+                {
+                    return -1;
+
+				}
+                else
+                {
+					updatedactor.ImageURl = ImageName;
+				}
+                
             }
             _db.Actors.Update(updatedactor);
             await _db.SaveChangesAsync();

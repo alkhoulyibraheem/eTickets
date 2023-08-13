@@ -98,7 +98,16 @@ namespace eTickets.infrastructure.Services.Cinema
 
             if (dto.Logo != null)
             {
-                Cinema.Logo = await _fileService.SaveFile(dto.Logo, "Image");
+                var ImageName = await _fileService.SaveImage(dto.Logo, "Image");
+                if (ImageName == "1")
+                {
+                    return -1;
+                }
+                else
+                {
+					Cinema.Logo = ImageName;
+				}
+                
             }
             await _db.Cinemas.AddAsync(Cinema);
             await _db.SaveChangesAsync();
@@ -119,7 +128,16 @@ namespace eTickets.infrastructure.Services.Cinema
             var updatedcinema = _mapper.Map<UpdateCinemaDto, Cinemas>(dto, cinema);
             if (dto.Logo != null)
             {
-                updatedcinema.Logo = await _fileService.SaveFile(dto.Logo, "Image");
+                var ImageName = await _fileService.SaveImage(dto.Logo, "Image");
+				if (ImageName == "1")
+				{
+					return -1;
+				}
+				else
+				{
+					updatedcinema.Logo = ImageName;
+				}
+				
             }
             _db.Cinemas.Update(updatedcinema);
             await _db.SaveChangesAsync();

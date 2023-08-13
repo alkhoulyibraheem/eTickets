@@ -107,7 +107,17 @@ namespace eTickets.infrastructure.Services.Director
 
             if (dto.ImageURl != null)
             {
-                Director.ImageURl = await _fileService.SaveFile(dto.ImageURl, "Image");
+                var ImageName = await _fileService.SaveImage(dto.ImageURl, "Image");
+                if (ImageName =="1")
+                {
+                    return -1;
+                }
+                else
+                {
+					Director.ImageURl = ImageName;
+				}
+
+				
             }
             Director.User = null;
             await _db.Directors.AddAsync(Director);
@@ -127,7 +137,16 @@ namespace eTickets.infrastructure.Services.Director
             var updatedDirector = _mapper.Map<UpdateDirectorDto, Directors>(dto, Director);
             if (dto.ImageURl != null)
             {
-                updatedDirector.ImageURl = await _fileService.SaveFile(dto.ImageURl, "Image");
+                var ImageName = await _fileService.SaveImage(dto.ImageURl, "Image");
+                if (ImageName == "1")
+                {
+                    return -1;
+                }
+                else
+                {
+					updatedDirector.ImageURl = ImageName;
+				}
+				
             }
             _db.Directors.Update(updatedDirector);
             await _db.SaveChangesAsync();
