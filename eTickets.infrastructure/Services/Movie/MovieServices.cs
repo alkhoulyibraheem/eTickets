@@ -104,7 +104,16 @@ namespace eTickets.infrastructure.Services.Cinema
 
             if (dto.ImageURL != null)
             {
-				Movie.ImageURL = await _fileService.SaveFile(dto.ImageURL, "Image");
+                var ImageName = await _fileService.SaveImage(dto.ImageURL, "Image"); ;
+                if (ImageName == "1")
+                {
+                    return -1;
+                }
+                else
+                {
+					Movie.ImageURL = ImageName;
+				}
+				
             }
             await _db.Movies.AddAsync(Movie);
             await _db.SaveChangesAsync();
@@ -135,7 +144,16 @@ namespace eTickets.infrastructure.Services.Cinema
             var updatedMovie = _mapper.Map<UpdateMovieDto, Movies>(dto, Movie);
             if (dto.ImageURL != null)
             {
-				updatedMovie.ImageURL = await _fileService.SaveFile(dto.ImageURL, "Image");
+                var ImageName = await _fileService.SaveImage(dto.ImageURL, "Image");
+                if (ImageName == "1")
+                {
+                    return -1;
+                }
+                else
+                {
+					updatedMovie.ImageURL = ImageName;
+				}
+				
             }
             _db.Movies.Update(updatedMovie);
             await _db.SaveChangesAsync();

@@ -1,5 +1,6 @@
 ﻿using eTickets.core.ViewModels;
 using Microsoft.AspNetCore.Http;
+using RestaurantStore.Core.Validation;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -17,12 +18,14 @@ namespace eTickets.core.Dto
         [Required(ErrorMessage = "Movie Name is required")]
         [Display(Name = "Movie Name")]
         [StringLength(100, MinimumLength = 2, ErrorMessage = "Name should be between 2 and 100 characters")]
-        public string Name { get; set; }
+		[SafeText]
+		public string Name { get; set; }
 
         [Required(ErrorMessage = "Movie Description is required")]
         [Display(Name = "Movie Description")]
         [StringLength(200, MinimumLength = 10, ErrorMessage = "Name should be between 10 and 200 characters")]
-        public string Description { get; set; }
+		[SafeText]
+		public string Description { get; set; }
 
         [Display(Name = "Whene Movie Created")]
         [DataType(DataType.Date)]

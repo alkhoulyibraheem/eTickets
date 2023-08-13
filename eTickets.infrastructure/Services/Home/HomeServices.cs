@@ -89,6 +89,23 @@ namespace eTickets.infrastructure.Services.Home
 			}
 
 			var MovieDto = _mapper.Map<movieViewModel>(movie);
+			var ListOfRating = _db.MovieRatings.Where(x => x.MoviId== Id).ToList();
+			int Sum = 0;
+			foreach(var rating in ListOfRating)
+			{
+				Sum += rating.Rating;
+			}
+			if (ListOfRating.Count() != 0)
+			{
+				Sum /= ListOfRating.Count();
+			}
+			else
+			{
+				Sum = 0;
+			}
+			
+
+			MovieDto.Ratint= Sum;
 
 			return MovieDto;
 
@@ -177,18 +194,48 @@ namespace eTickets.infrastructure.Services.Home
 
 		public async Task<int> Rating(RatingDto dto)
 		{
-			var movie = await _db.Movies.FirstOrDefaultAsync(x => x.Id == dto.Id);
-			if(movie == null)
+			var movie = await _db.Movies.FirstOrDefaultAsync(x => x.Id == dto.MoviId);
+			if (movie == null)
 			{
 				throw new EntityNotFoundExecption();
 			}
-			movie.NumberOfStars += dto.NumberOfStars;
-			++movie.NumberRater;
-			_db.Movies.Update(movie);
-			_db.SaveChanges();
-			return movie.Id;
 
+			var IsEixt = await _db.MovieRatings.FirstOrDefaultAsync(x => x.MoviId == dto.MoviId && x.UserId == dto.UserId);
+			
+			if (IsEixt == null)
+			{
+				var Rated = new MovieRating();
+				Rated.MoviId = dto.MoviId;
+				Rated.UserId = dto.UserId;
+				Rated.Rating = dto.Rating;
+				await _db.MovieRatings.AddAsync(Rated);
+				_db.SaveChanges();
+				return Rated.Id;
+			}
+			else
+			{
+				return -1;
+			}
+			
+			
 		}
+
+
+
+		//public async Task<int> Rating(RatingDto dto)
+		//{
+		//	var movie = await _db.Movies.FirstOrDefaultAsync(x => x.Id == dto.Id);
+		//	if(movie == null)
+		//	{
+		//		throw new EntityNotFoundExecption();
+		//	}
+		//	movie.NumberOfStars += dto.NumberOfStars;
+		//	++movie.NumberRater;
+		//	_db.Movies.Update(movie);
+		//	_db.SaveChanges();
+		//	return movie.Id;
+
+		//}
 
 
 	}

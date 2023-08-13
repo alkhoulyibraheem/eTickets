@@ -348,6 +348,27 @@ namespace eTickets.data.Migrations
                     b.ToTable("MovieOrders");
                 });
 
+            modelBuilder.Entity("eTickets.data.Models.MovieRating", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("MoviId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Rating")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MovieRatings");
+                });
+
             modelBuilder.Entity("eTickets.data.Models.Movies", b =>
                 {
                     b.Property<int>("Id")
