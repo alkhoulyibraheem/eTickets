@@ -1,6 +1,7 @@
 ﻿using eTickets.core.Enums;
 using eTickets.core.ViewModels;
 using Microsoft.AspNetCore.Http;
+using RestaurantStore.Core.Validation;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -17,6 +18,7 @@ namespace eTickets.core.Dto
        
         [Required(ErrorMessage = "Actor Bio is required")]
         [Display(Name = "Actor Bio")]
+        [SafeText]
         public string Bio { get; set; }
 
         [Display(Name = "Actor Day Of Birth")]

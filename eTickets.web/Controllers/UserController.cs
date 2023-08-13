@@ -52,6 +52,11 @@ namespace eTickets.web.Controllers
             if(ModelState.IsValid) 
             {
 				var users = await _UserServices.Create(dto);
+				if (users == "-1")
+				{
+					TempData["msg"] = "e:Image Size so much !";
+					return View(dto);
+				}
 				TempData["msg"] = "s:User Created Succsfuly !";
 				return RedirectToAction("Index");
 			}
@@ -72,6 +77,11 @@ namespace eTickets.web.Controllers
             if (ModelState.IsValid)
             {
                 var users = await _UserServices.Update(dto);
+				if (users == "-1")
+				{
+					TempData["msg"] = "e:Image Size so much !";
+					return View(dto);
+				}
 				TempData["msg"] = "s:User Updated Succsfuly !";
 				return RedirectToAction("Index");
             }

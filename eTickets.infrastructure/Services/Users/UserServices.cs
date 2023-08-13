@@ -115,7 +115,16 @@ namespace eTickets.infrastructure.Services.Users
             user.UserName = dto.Email;
             if (dto.ImageURL != null)
             {
-                user.ImageURL = await _fileService.SaveFile(dto.ImageURL, "Image");
+                var ImageName = await _fileService.SaveImage(dto.ImageURL, "Image");
+                if (ImageName == "1")
+                {
+                    return "-1";
+                }
+                else
+                {
+					user.ImageURL = ImageName;
+				}
+                
             }
 
 			var password = GenratePassword();
@@ -159,7 +168,16 @@ namespace eTickets.infrastructure.Services.Users
             var updatedUser = _mapper.Map<UpdateUserDto, User>(dto, user);
             if (dto.ImageURL != null)
             {
-                updatedUser.ImageURL = await _fileService.SaveFile(dto.ImageURL, "Image");
+                var ImageName = await _fileService.SaveImage(dto.ImageURL, "Image");
+                if (ImageName == "1")
+                {
+                    return "-1";
+                }
+                else
+                {
+					updatedUser.ImageURL = ImageName;
+				}
+				
             }
             _db.Users.Update(updatedUser);
             await _db.SaveChangesAsync();

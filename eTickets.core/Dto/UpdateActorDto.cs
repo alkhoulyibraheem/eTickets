@@ -1,6 +1,7 @@
 ﻿using eTickets.core.Enums;
 using eTickets.core.ViewModels;
 using Microsoft.AspNetCore.Http;
+using RestaurantStore.Core.Validation;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -17,11 +18,13 @@ namespace eTickets.core.Dto
         [Required(ErrorMessage = "Actor Name is required")]
         [Display(Name = "Actor Name")]
         [StringLength(100, MinimumLength = 2, ErrorMessage = "Name should be between 2 and 100 characters")]
-        public string Name { get; set; }
+		[SafeText]
+		public string Name { get; set; }
 
         [Required(ErrorMessage = "Actor Bio is required")]
         [Display(Name = "Actor Bio")]
-        public string Bio { get; set; }
+		[SafeText]
+		public string Bio { get; set; }
 
         [Display(Name = "Actor Day Of Birth")]
         [DataType(DataType.Date)]
