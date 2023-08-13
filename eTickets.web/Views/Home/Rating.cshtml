@@ -7,7 +7,6 @@
 <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15 card">
 	<!--begin:Form-->
 	<form class="form" asp-action="Rating" >
-		<input  asp-for="Id" type="hidden"/>
 		<!--begin::Heading-->
 		<div class="mb-13 text-center">
 			<!--begin::Title-->
@@ -25,11 +24,11 @@
 			<div class="col-md-8 container-fluid">
 				<div class="d-flex flex-column mb-8 fv-row">
 					<!--begin::Label-->
-					<label class="d-flex align-items-center fs-6 fw-semibold mb-2" asp-for="NumberOfStars">
+					<label class="d-flex align-items-center fs-6 fw-semibold mb-2" asp-for="Rating">
 					</label>
 					<!--end::Label-->
-					<input asp-for="NumberOfStars" class="form-control form-control-solid" type="text" placeholder="Enter Movie Rating" />
-					<span asp-validation-for="NumberOfStars" class="text-danger"></span>
+					<input asp-for="Rating" class="form-control form-control-solid" type="text" placeholder="Enter Movie Rating" />
+					<span asp-validation-for="Rating" class="text-danger"></span>
 				</div>
 			</div>
 

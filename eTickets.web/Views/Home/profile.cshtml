@@ -93,13 +93,13 @@
 							<!--end::Billing & shipping-->
 							<!--begin:Order summary-->
 							<div class="d-flex justify-content-between flex-column" style="display:flex;justify-content:end; align-items:center">
-								@if (Model.NumberRater != 0)
+								@if (Model.Ratint != 0)
 								{
 									<h1>Rating</h1>
 									<br />
 									<br />
 									<div style="display:flex;justify-content:end; align-items:center">
-										@for (var i = 0; i < (Model.NumberOfStars) / Model.NumberRater; i++)
+										@for (var i = 0; i < Model.Ratint; i++)
 									{
 										<div class="rating-label me-7 checked" >
 											<i class="bi bi-star-fill fs-50"></i>

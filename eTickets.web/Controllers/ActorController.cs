@@ -55,6 +55,11 @@ namespace eTickets.web.Controllers
             if (ModelState.IsValid)
             {
                 var users = await _ActorServices.Create(dto);
+				if (users == -1)
+				{
+					TempData["msg"] = "e:Image Size so much !";
+					return View(dto);
+				}
 				TempData["msg"] = "s:Actor Created Succsfuly !";
 				return RedirectToAction("Index");
             }
@@ -75,6 +80,11 @@ namespace eTickets.web.Controllers
             if (ModelState.IsValid)
             {
                 var users = await _ActorServices.Update(dto);
+                if (users == -1 )
+                {
+					TempData["msg"] = "e:Image Size so much !";
+					return View(dto);
+				}
 				TempData["msg"] = "s:Actor Updated Succsfuly !";
 				return RedirectToAction("Index");
             }

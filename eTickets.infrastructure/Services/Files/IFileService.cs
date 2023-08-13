@@ -11,5 +11,7 @@ namespace eTickets.infrastructure.Services
         Task<string> SaveFile(byte[] file, string folderName, string extension);
         Task<byte[]> GetFile(string folderName, string fileName);
         Task<string> GetFileBase64(string folderName, string fileName);
-    }
+        Task<string> SaveImage(IFormFile file, string folderName);
+
+	}
 }
