@@ -60,7 +60,8 @@
 					<label class="d-flex align-items-center fs-6 fw-semibold mb-2" asp-for="ImageURl ">
 					</label>
 					<!--end::Label-->
-					<input asp-for="ImageURl" class="form-control form-control-solid" placeholder="Enter Image" />
+					<input asp-for="ImageURl" class="form-control form-control-solid" placeholder="Enter Image" type="file" id="fileInput" onchange="checkFileType()" />
+					<div id="fileTypeResult" class="text-danger"></div>
 					<span asp-validation-for="ImageURl" class="text-danger"></span>
 				</div>
 			</div>
@@ -96,6 +97,7 @@
 					</label>
 					<!--end::Label-->
 					<input asp-for="User.PhoneNumber" class="form-control form-control-solid" placeholder="Enter Your Phone Number" />
+					<span asp-validation-for="User.PhoneNumber" class="text-danger"></span>
 				</div>
 			</div>
 			<div class="col-md-6">
@@ -122,3 +124,91 @@
 	</form>
 	<!--end:Form-->
 </div>
+<script>
+	function checkFileType() {
+		var fileInput = document.getElementById('fileInput');
+		var fileTypeResult = document.getElementById('fileTypeResult');
+
+		if (fileInput.files.length > 0) {
+			var selectedFile = fileInput.files[0];
+			var fileType = selectedFile.type;
+
+			if (fileType === 'image/jpeg' || fileType === 'image/jpg' || fileType === 'image/png') {
+				fileTypeResult.innerHTML = '';
+			} else {
+				fileTypeResult.innerHTML = 'make sure file type.';
+				fileInput.value = ''; // Clear the input to prevent submitting invalid files
+			}
+		} else {
+			fileTypeResult.innerHTML = 'No file selected.';
+		}
+	}
+</script>
+<script>
+	document.getElementById("fileInput").addEventListener("change", function () {
+		const fileInput = this;
+		const fileSizeLimit = 5 * 1024 * 1024; // 2MB in bytes
+
+		if (fileInput.files.length > 0) {
+			const fileSize = fileInput.files[0].size;
+			const imageError = document.getElementById("fileTypeResult");
+
+			if (fileSize > fileSizeLimit) {
+				imageError.textContent = "Image size exceeds the limit of 5MB.";
+				fileInput.value = ""; // Clear the selected file
+			} else {
+				imageError.textContent = "";
+			}
+		}
+	});
+</script>
+<script>
+	const ImageSignatures = {
+		".jpg": [0xFF, 0xD8, 0xFF, 0xE0], // JPEG
+		".png": [0x89, 0x50, 0x4E, 0x47], // PNG
+		".gif": [0x47, 0x49, 0x46, 0x38], // GIF
+		".bmp": [0x42, 0x4D],             // BMP
+		".tiff": [0x49, 0x49, 0x2A, 0x00] // TIFF (little-endian)
+		// Add more image types and their signatures here
+	};
+
+	document.getElementById("fileInput").addEventListener("change", function (event) {
+		const imageFile = event.target.files[0];
+		const validationResult = document.getElementById("fileTypeResult");
+
+		if (imageFile) {
+			const validExtensions = Object.keys(ImageSignatures);
+
+			const reader = new FileReader();
+			reader.onloadend = function () {
+				const buffer = new Uint8Array(reader.result);
+
+				for (const extension of validExtensions) {
+					const signature = ImageSignatures[extension];
+					if (isSignatureMatch(buffer, signature)) {
+						return;
+					}
+				}
+				fileInput.value = '';
+				validationResult.textContent = "Invalid image.";
+
+			};
+
+			reader.readAsArrayBuffer(imageFile);
+		}
+	});
+
+	function isSignatureMatch(buffer, signature) {
+		if (buffer.length < signature.length) {
+			return false;
+		}
+
+		for (let i = 0; i < signature.length; i++) {
+			if (buffer[i] !== signature[i]) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+</script>

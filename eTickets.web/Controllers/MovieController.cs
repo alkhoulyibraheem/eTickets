@@ -62,7 +62,12 @@ namespace eTickets.web.Controllers
             if(ModelState.IsValid && dto.StartDate < dto.EndDate) 
             {
 				var users = await _MovieServices.Create(dto);
-                TempData["msg"] = "s:Movie Created Succsfuly !";
+				if (users == -1)
+				{
+					TempData["msg"] = "e:Image Size so much !";
+					return View(dto);
+				}
+				TempData["msg"] = "s:Movie Created Succsfuly !";
                 return RedirectToAction("Index");
 			}
             TempData["msg"] = "e:Movie Created Not Succsfuly !";
@@ -90,7 +95,12 @@ namespace eTickets.web.Controllers
             if (ModelState.IsValid && dto.StartDate < dto.EndDate)
             {
                 var users = await _MovieServices.Update(dto);
-                TempData["msg"] = "s:Movie Updated Succsfuly !";
+				if (users == -1)
+				{
+					TempData["msg"] = "e:Image Size so much !";
+					return View(dto);
+				}
+				TempData["msg"] = "s:Movie Updated Succsfuly !";
                 return RedirectToAction("Index");
             }
             TempData["msg"] = "e:Movie Updated Not Succsfuly !";

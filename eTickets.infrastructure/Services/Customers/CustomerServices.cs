@@ -108,8 +108,18 @@ namespace eTickets.infrastructure.Services.Customers
 
             if (dto.ImageURl != null)
             {
-				Customer.ImageURl = await _fileService.SaveFile(dto.ImageURl, "Image");
-            }
+                var ImageName = await _fileService.SaveImage(dto.ImageURl, "Image");
+                if (ImageName =="1")
+                {
+                    return -1;
+                }
+                else
+                {
+					Customer.ImageURl = ImageName;
+				}
+                
+
+			}
 			Customer.User = null;
             await _db.Customers.AddAsync(Customer);
             await _db.SaveChangesAsync();
@@ -128,7 +138,15 @@ namespace eTickets.infrastructure.Services.Customers
             var updatedCustomer = _mapper.Map<UpdateCustomerDto, Customer>(dto, Customer);
             if (dto.ImageURl != null)
             {
-				updatedCustomer.ImageURl = await _fileService.SaveFile(dto.ImageURl, "Image");
+                var ImageName = await _fileService.SaveImage(dto.ImageURl, "Image");
+				if (ImageName == "1")
+				{
+					return -1;
+				}
+				else
+				{
+					updatedCustomer.ImageURl = ImageName;
+				}
             }
             _db.Customers.Update(updatedCustomer);
             await _db.SaveChangesAsync();

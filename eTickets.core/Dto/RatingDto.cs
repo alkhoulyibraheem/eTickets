@@ -9,9 +9,11 @@ namespace eTickets.core.Dto
 {
 	public class RatingDto
 	{
-		public int Id { get; set; }
-		[Display(Name = "Rating Movie form 5 star")]
-		[Range(0, 5, ErrorMessage = "Rating must be between 0 and 5")]
-		public int NumberOfStars { get; set; }
+
+		public int Rating { get; set; }
+
+		public int MoviId { get; set; }
+
+		public string UserId { get; set; }
 	}
 }

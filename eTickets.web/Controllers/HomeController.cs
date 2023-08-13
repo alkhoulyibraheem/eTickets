@@ -30,7 +30,7 @@ namespace eTickets.web.Controllers
     {
 
 
-		
+		static int Movei = 0;
 
 		private readonly IHomeServices _HomeServices;
 		
@@ -109,12 +109,14 @@ namespace eTickets.web.Controllers
 			return RedirectToAction("Index");
 
 		}
+		
 		[Authorize(Roles = "Customer")]
 		[HttpGet]
+		
 		public IActionResult Rating(int Id)
 		{
 			var rat = new RatingDto();
-			rat.Id = Id;
+			Movei = Id;
 			return View(rat);
 
 		}
@@ -123,12 +125,15 @@ namespace eTickets.web.Controllers
 		public async Task<IActionResult> Rating(RatingDto dto)
 		{
 			var UserType = ViewData["UserType"] as string;
-
 			if (UserType == "Admin")
 			{
 				TempData["msg"] = "e: not allowed you are admin !";
 				return RedirectToAction("Index");
 			}
+
+			var UserId = ViewBag.Id as string;
+			dto.UserId= UserId;
+			dto.MoviId = Movei;
 			await _HomeServices.Rating(dto);
             TempData["msg"] = "s:Rating Succsfuly !";
             return RedirectToAction("Index");

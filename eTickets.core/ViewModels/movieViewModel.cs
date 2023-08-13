@@ -49,6 +49,7 @@ namespace eTickets.core.ViewModels
 
 		public int NumberRater { get; set; }
 
+		public int Ratint { get; set; }
 
 
 
