@@ -46,8 +46,12 @@ namespace eTickets.web
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+
+
             services.AddDatabaseDeveloperPageExceptionFilter();
+
             services.AddAutoMapper(typeof(MapperProfile).Assembly);
+
             services.AddTransient<IFileService, FileService>();
             services.AddTransient<IUserServices, UserServices>();
             services.AddTransient<ICategoryServices , CategoryServices>();
