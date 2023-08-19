@@ -177,7 +177,7 @@ namespace eTickets.infrastructure.Services.Home
 
 		public async Task<int> rolos()
 		{
-			if (_db.Roles.Any())
+			if (!_db.Roles.Any())
 			{
 				var roles = new List<string>();
 				roles.Add("Actor");
