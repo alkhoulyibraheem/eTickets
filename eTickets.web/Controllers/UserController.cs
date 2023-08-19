@@ -11,7 +11,7 @@ using static eTickets.core.DataTable.DataTable;
 
 namespace eTickets.web.Controllers
 {
-	[Authorize(Roles = "Admin")]
+	//[Authorize(Roles = "Admin")]
 	public class UserController : BaseController
     {
 
