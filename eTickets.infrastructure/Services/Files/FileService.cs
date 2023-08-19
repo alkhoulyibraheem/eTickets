@@ -74,7 +74,7 @@ namespace eTickets.infrastructure.Services
             string fileName = null;
             if (file != null && file.Length > 0)
             {
-				if (file.Length <= 5242880 && IsImageValid(file))
+				if (file.Length <= 5242880 )
                 {
 					var uploads = Path.Combine(_env.WebRootPath, folderName);
 					fileName = Guid.NewGuid().ToString().Replace("-", "") + Path.GetExtension(file.FileName);
